@@ -1,4 +1,6 @@
 // config.ts
+// Author: Parul Gautam
+// Date: 23 July, 2023
 interface Configuration {
     mongoURI: string;
     port: string;

@@ -1,3 +1,6 @@
+// router.ts
+// Author: Parul Gautam
+// Date: 23 July, 2023
 import { Router } from "express";
 import movieController from "../controllers/movie";
 import userController from "../controllers/user";

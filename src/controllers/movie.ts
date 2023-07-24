@@ -1,3 +1,6 @@
+// movie.ts
+// Author: Parul Gautam
+// Date: 23 July, 2023
 import { Request, Response } from "express";
 import Movie from "../models/model";
 import logger from "../logger";

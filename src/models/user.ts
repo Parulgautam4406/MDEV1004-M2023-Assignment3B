@@ -1,3 +1,6 @@
+// user.ts
+// Author: Parul Gautam
+// Date: 23 July, 2023
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 import passportLocalMongoose from "passport-local-mongoose";

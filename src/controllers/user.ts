@@ -1,3 +1,6 @@
+// user.ts
+// Author: Parul Gautam
+// Date: 23 July, 2023
 import { NextFunction, Request, Response } from "express";
 import User from "../models/user";
 import logger from "../logger";

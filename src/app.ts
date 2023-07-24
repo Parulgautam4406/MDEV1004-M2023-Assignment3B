@@ -1,3 +1,6 @@
+// app.ts
+// Author: Parul Gautam
+// Date: 23 July, 2023
 import express, { ErrorRequestHandler } from "express";
 import mongoose from "mongoose";
 import routes from "./routes/router";

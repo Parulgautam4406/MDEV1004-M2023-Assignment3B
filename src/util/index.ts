@@ -1,3 +1,6 @@
+// index.ts
+// Author: Parul Gautam
+// Date: 23 July, 2023
 import jwt from "jsonwebtoken";
 import db from "../configurations/configurations";
 
