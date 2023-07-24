@@ -42,6 +42,7 @@ mongoose
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(cors());
 
 // setup express session
 app.use(
@@ -61,6 +62,27 @@ passport.use(User.createStrategy());
 // serialize and deserialize user data
 passport.serializeUser(User.serializeUser() as any);
 passport.deserializeUser(User.deserializeUser());
+
+// setup JWT Options
+let jwtOptions = {
+    jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+    secretOrKey: config.secret,
+};
+
+// setup JWT Strategy
+let strategy = new JWTStrategy(jwtOptions, function (jwt_payload, done) {
+    try {
+        const user = User.findById(jwt_payload.id);
+        if (user) {
+            return done(null, user);
+        }
+        return done(null, false);
+    } catch (error) {
+        return done(error, false);
+    }
+});
+
+passport.use(strategy);
 
 // Routes
 app.use("/api/", routes);

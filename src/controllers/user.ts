@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import User from "../models/user";
 import logger from "../logger";
 import passport from "passport";
+import { GenerateToken } from "../util";
 
 /**
  * Controller class for user-related / authentication operations.
@@ -66,19 +67,28 @@ class Controller {
                     user: user,
                 });
             }
-            req.login(user, (err) => {
+            req.logIn(user, (err) => {
                 // are there DB errors?
                 if (err) {
                     console.error(err);
                     return next(err);
                 }
-                // return response
+                const authToken = GenerateToken(user);
+
                 return res.json({
                     success: true,
-                    msg: "User Logged in Successfully!",
-                    user: user,
+                    msg: "User Logged In Successfully!",
+                    user: {
+                        id: user._id,
+                        displayName: user.displayName,
+                        username: user.username,
+                        emailAddress: user.emailAddress,
+                    },
+                    token: authToken,
                 });
             });
+
+            return;
         })(req, res, next);
     }
 
